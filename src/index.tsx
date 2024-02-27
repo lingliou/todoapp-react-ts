@@ -1,19 +1,62 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import {
+    createBrowserRouter,
+    RouterProvider,
+    useParams,
+} from "react-router-dom";
+import TodoList from "./pages/TodoList";
+import NewTodo from "./pages/NewTodo";
+import TodoDetail from "./pages/TodoDetail";
+import Edit from "./pages/Edit";
+import { ContextProvider } from "./store/todosCtx";
+import CategoryList from "./pages/CategoryList";
+import AllCategory from "./pages/AllCategory";
+import ErrorPage from "./pages/ErrorPage";
+
+const CategoryRoute = () => {
+    const { category } = useParams<{ category?: string }>();
+
+    return category ? <CategoryList /> : <AllCategory />;
+};
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <TodoList />,
+    },
+    {
+        path: "/new",
+        element: <NewTodo />,
+    },
+    {
+        path: "/category/:category?",
+        element: <CategoryRoute />,
+    },
+    {
+        path: "/edit/:id",
+        element: <Edit />,
+    },
+    {
+        path: "/id/:id",
+        element: <TodoDetail />,
+    },
+    {
+        path: "*",
+        element: <ErrorPage />,
+    },
+]);
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+    document.getElementById("root") as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <React.StrictMode>
+        <ContextProvider>
+            <div className="app">
+                <RouterProvider router={router} />
+            </div>
+        </ContextProvider>
+    </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

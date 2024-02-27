@@ -11,3 +11,82 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.app {
+  margin-top: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Reset default styles for ul/ol and li */
+ul,
+ol,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Center items on the page */
+body {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  height: 100vh;
+  margin: 0;
+}
+
+/* Style the todo container */
+.todo-container,
+.todo-detail {
+  width: 500px;
+}
+
+/* Style individual todo items */
+.todo-item {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todo-item label {
+  flex: 1;
+  margin-right: 10px;
+  word-break: break-all;
+}
+
+/* Style the todo input and button */
+.todo-input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  font-size: 16px;
+}
+
+
+/* Style for completed todo items */
+.todo-item.completed {
+  background-color: #e0e0e0;
+  color: #888;
+  text-decoration: line-through;
+}
+
+/* Add responsiveness for smaller screens */
+@media (max-width: 400px) {
+  .todo-container {
+    width: 90%;
+  }
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+}
